@@ -1,7 +1,3 @@
-# Fundamentos de Comunicaciones Inalámbricas para tu Proyecto LoRa GPS
-
-Después de revisar tu documentación, te propongo una estructura que organiza los conceptos fundamentales que necesitarás dominar para tu proyecto de Tracker GPS con LoRa. He reorganizado el contenido para que puedas construir conocimiento de forma progresiva:
-
 ## Bases Teóricas de la Comunicación de Datos
 
 ### Conceptos Analógico vs Digital
