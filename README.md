@@ -34,9 +34,9 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 ## 📚 Documentación
 
-- [Requisitos del Proyecto](00-requisitos.md)
-- [Marco Teórico](01-marco-teorico.md)
-- [Diseño del Tracker](01-diseno-tracker.md)
+- [Requisitos del Proyecto](log/00-requisitos.md)
+- [Marco Teórico](log/01-marco-teorico.md)
+- [Algunas Referencias](log/ref.md)
 
 ## 📝 Progreso
 
@@ -47,3 +47,7 @@ Actualmente trabajando en la integración de los módulos GPS y LoRa, con prueba
 <div align="center">
   <b>Proyecto en desarrollo - Marzo 2025</b>
 </div>
+
+### Roadmap
+
+![Roadmap](/resources/img/road-map.png)
