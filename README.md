@@ -25,7 +25,7 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 ## 📋 Estado del Proyecto
 
 | Fase | Estado |
-|------|--------|
+| - | - |
 | Selección de Hardware | ✅ |
 | Prototipo Básico | 🔄 |
 | Pruebas de Conectividad | 🔄 |
