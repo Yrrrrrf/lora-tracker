@@ -5,3 +5,6 @@ docs/*
 **/0x*
 
 **/target
+
+avr-specs
+.cargo
