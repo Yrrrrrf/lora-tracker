@@ -3,3 +3,5 @@ docs/*
 !docs/00-*
 # ignore scripts that starts with '0x'
 **/0x*
+
+**/target
