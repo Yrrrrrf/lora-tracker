@@ -20,6 +20,6 @@ fn main() -> ! {
     loop {
         // Toggle LED to show system is alive
         uno::toggle_pin(&mut led);
-        uno::delay(50);
+        uno::delay(500);
     }
 }

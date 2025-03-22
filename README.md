@@ -42,12 +42,7 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 Actualmente trabajando en la integración de los módulos GPS y LoRa, con pruebas iniciales de transmisión de datos hasta 100m. Próximamente se realizarán optimizaciones para aumentar el alcance a 1km y posteriormente a 5km.
 
----
-
-<div align="center">
-  <b>Proyecto en desarrollo - Marzo 2025</b>
-</div>
 
 ### Roadmap
 
-![Roadmap](/resources/img/road-map.png)
+![Roadmap](./resources/img/road-map.png)

@@ -31,7 +31,7 @@ The main goal of this project is to develop a **GPS tracker** using the [[000-Ze
 - Configure the **[[000-Zettelkasten/LoRa|LoRaWAN]]** network to manage communication
 - Design an **antenna** that optimizes signal quality
 
- - [[300-Yrrrrrf/lora-tracker/lora-tracker.canvas|LoRa Tracker Canvas]]
+ - [[300-Yrrrrrf/lora-tracker/docs/lora-tracker.canvas|LoRa Tracker Canvas]]
 - [[arduino|Arduino]] UNO R3
 
 ```rust
@@ -46,8 +46,8 @@ define_layer_struct! {
 ```
 
 ## Links
-- [[300-Yrrrrrf/lora-tracker/00-marco-teorico|00-marco-teorico]]
-- [[300-Yrrrrrf/lora-tracker/01-especificaciones-técnicas|01-especificaciones-técnicas]]
+- [[300-Yrrrrrf/lora-tracker/docs/00-marco-teorico|00-marco-teorico]]
+- [[300-Yrrrrrf/lora-tracker/docs/01-especificaciones-técnicas|01-especificaciones-técnicas]]
 
 ## References
 - [LoRaWAN® | The Things Network](https://www.thethingsnetwork.org/docs/lorawan/)
