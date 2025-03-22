@@ -21,5 +21,5 @@ void setup() {
 
 // * Main loop
 void loop() {
-  blinkPin(LED_BUILTIN, 500, 100);
+  blinkPin(LED_BUILTIN, 1000, 100);
 }
