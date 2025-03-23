@@ -3,7 +3,6 @@ cheatsheet/
 docs/00-main.docx
 docs/lora-tracker.canvas
 
-e
 # Rust
 **/target
 # C => Rust bindings
@@ -12,7 +11,6 @@ avr-specs
 
 
 # Plarform IO
-.pio
 **/.vscode
 # todo: Remove this for add the correct paths (on the PlatformIO project)
 **/include

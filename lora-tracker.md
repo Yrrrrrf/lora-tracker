@@ -35,16 +35,20 @@ The main goal of this project is to develop a **GPS tracker** using the [[000-Kn
 - [[arduino|Arduino]] UNO R3
 - [[gps|GPS]] Module
 ## Links
-### Repositories
+### Repository
 - [repository](https://github.com/Yrrrrrf/lora-tracker)
 - [[300-Yrrrrrf/lora-tracker/README|README]]
 - [[300-Yrrrrrf/lora-tracker/resources/attributions|resource attributions]]
-
-### Docs
+### Documentation
 - [[300-Yrrrrrf/lora-tracker/docs/00-marco-teorico|00-marco-teorico]]
 - [[300-Yrrrrrf/lora-tracker/docs/01-especificaciones-técnicas|01-especificaciones-técnicas]]
 
 ## References
+
+### Check it out!
+- [Some Arduino + NEO 6M impl](https://www.youtube.com/watch?v=GYYpqHZIG1A)
+
+### Resources 
 - [LoRaWAN® | The Things Network](https://www.thethingsnetwork.org/docs/lorawan/)
 -  **Electronic Clinic**
 	- [SX1278 Overview](https://www.youtube.com/watch?v=r-jwNlMQPIk)  

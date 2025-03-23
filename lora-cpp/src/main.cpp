@@ -1,19 +1,27 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 
-#include <DHT.h>  // DHT sensor library
-#include <DHT_U.h>  // DHT sensor library
+#include <DHT.h>
+#include <DHT_U.h>
 
-// todo: add a button to start/stop the timer	
-LiquidCrystal lcd(7, 6, 5, 4, 3, 2);	// pines RS, E, D4, D5, D6, D7 de modulo 1602A
+#include <SoftwareSerial.h>
+#include <TinyGPS++.h>
 
 
-int dhtPin = 8; // pin DATA de DHT22 a pin digital 2
-int dhtType = DHT11;
-DHT dht(dhtPin, dhtType);
+int RXpin = 8;
+int TXpin = 9;
+SoftwareSerial gpsSerial(RXpin, TXpin); // RX, TX
+TinyGPSPlus gps;
+float lattitude,longitude;
 
-int temperature = 0;
-int humidity = 0;
+// * LCD setup
+int RSpin = 7;  // Register Select pin
+int Epin = 6;  // Enable pin
+LiquidCrystal lcd(RSpin, Epin, 5, 4, 3, 2);	// pines RS, E, D4, D5, D6, D7 de modulo 1602A
+
+int dhtPin = 12; // pin DATA de DHT22 a pin digital 2
+DHT dht(dhtPin, DHT11);
+int temperature, humidity;
 
 
 // * Some fn's declarations...
@@ -25,7 +33,6 @@ void blinkPin(int pin, int onTime, int offTime) {
 }
 
 void setLCD(int col, int row, String msg) {
-// conut message, it its more than 16 chars, then use the scroll fn
 	lcd.setCursor(col, row);
 	lcd.print(msg);
 	if (msg.length() > 16) {
@@ -60,6 +67,10 @@ void setup() {
 	lcd.begin(16, 2);	// inicializa a display de 16 columnas y 2 lineas
 	dht.begin();	// inicializa el sensor DHT
 	pinMode(LED_BUILTIN, OUTPUT);
+
+	// Start the software serial port at the GPS's default baud
+	gpsSerial.begin(9600); 	// * Baud rate of the GPS
+
 }
 
 // * Main loop
@@ -67,10 +78,16 @@ void loop() {
 	String time_fmt = printElapsedTime();
     setLCD(0, 0, time_fmt);
 	setDHT(0, 1);
-    Serial.println("Time: " + time_fmt);
-	
+    // Serial.println("Time: " + time_fmt);
 
-	
-
-	delay(1000);
+	// while (gpsSerial.available()) {
+		int data = gpsSerial.read();
+		Serial.print(data);
+		// if (gps.encode(data)) {
+			lattitude = (gps.location.lat());
+			longitude = (gps.location.lng());
+			Serial.println("Location: " + String(lattitude) + ", " + String(longitude));
+		// }
+	// }
+	// delay(1000);
 }
