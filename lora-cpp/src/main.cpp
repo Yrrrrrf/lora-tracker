@@ -33,6 +33,13 @@ void setLCD(int col, int row, String msg) {
 	}
 }
 
+void setDHT(int col, int row) {
+	temperature = dht.readTemperature();
+	humidity = dht.readHumidity();
+	setLCD(col, row, String(temperature) + "C");
+	setLCD(col + 5, row, String(humidity) + "%");
+}
+
 // String printElapsedTime(int elapsed_seconds) {
 String printElapsedTime() {
 	int elapsed_seconds = millis() / 1000;
@@ -42,7 +49,7 @@ String printElapsedTime() {
 		(elapsed_seconds % 3600) / 60,
 		(elapsed_seconds % 60)
 	);
-	return String(time_fmt); // Convert to String and return
+	return String(time_fmt);
 }
 
 // * Main code --------------------------------------------------------
@@ -57,16 +64,13 @@ void setup() {
 
 // * Main loop
 void loop() {
-	// some log data...
 	String time_fmt = printElapsedTime();
     setLCD(0, 0, time_fmt);
+	setDHT(0, 1);
     Serial.println("Time: " + time_fmt);
+	
 
-	// set the temperature and humidity on the LCD
-	temperature = dht.readTemperature();
-	humidity = dht.readHumidity();
-	setLCD(0, 1, "Temp: " + String(temperature) + "C");
-	setLCD(8, 1, "Hum: " + String(humidity) + "%");
+	
 
 	delay(1000);
 }

@@ -1,9 +1,9 @@
 # project
 cheatsheet/
-docs/*
-!docs/
+docs/00-main.docx
+docs/lora-tracker.canvas
 
-
+e
 # Rust
 **/target
 # C => Rust bindings
