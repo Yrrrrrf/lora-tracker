@@ -16,11 +16,9 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 ## 🛠️ Hardware Requerido
 
-- Módulo LoRa (SX1276 o similar)
-- Módulo GPS de bajo consumo
-- Antena 433MHz con ganancia adecuada
-- Plataforma Arduino/Raspberry Pi
-- Batería y componentes adicionales
+- Módulo LoRa `SX1276` 433MHz
+- Módulo GPS de bajo consumo `NEO-6M`
+- `Arduino` o `ESP32` como microcontrolador
 
 ## 📋 Estado del Proyecto
 
@@ -34,14 +32,9 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 ## 📚 Documentación
 
-- [Requisitos del Proyecto](log/00-requisitos.md)
-- [Marco Teórico](log/01-marco-teorico.md)
-- [Algunas Referencias](log/ref.md)
-
-## 📝 Progreso
-
-Actualmente trabajando en la integración de los módulos GPS y LoRa, con pruebas iniciales de transmisión de datos hasta 100m. Próximamente se realizarán optimizaciones para aumentar el alcance a 1km y posteriormente a 5km.
-
+- [Main](./lora-tracker.md)
+- [Marco Teórico](docs/00-marco-teorico.md)
+- [Espeficicaiones Técnicas](docs/01-especificaciones-técnicas.md)
 
 ### Roadmap
 

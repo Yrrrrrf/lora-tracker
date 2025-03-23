@@ -16,7 +16,7 @@
 	- Donde C es capacidad en bits por segundo, W es ancho de banda, S/N es relación señal-ruido
 - **Para tu proyecto**: Un mayor ancho de banda permite más datos pero consume más energía; LoRa optimiza esta relación.
 
-### Modulación: Clave para [[LoRa]]
+### Modulación: Clave para [[000-Knowledge/CS/network/LoRa]]
 - **Concepto**: Proceso de codificar información en una onda portadora.
 - **Tipos principales**:
 	- ASK (Amplitude Shift Keying): Varía la amplitud

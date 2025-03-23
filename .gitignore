@@ -1,14 +1,15 @@
-# do not import docs/
+# project
+cheatsheet/
 docs/*
-!docs/00-*
-# ignore scripts that starts with '0x'
-**/0x*
+!docs/
 
+
+# Rust
 **/target
-
 # C => Rust bindings
 avr-specs
 .cargo
+
 
 # Plarform IO
 .pio
@@ -17,5 +18,3 @@ avr-specs
 **/include
 **/lib
 **/test
-
-cheatsheet/
