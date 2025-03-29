@@ -3,6 +3,8 @@ cheatsheet/
 docs/00-main.docx
 docs/lora-tracker.canvas
 
+lora-tracker.code-workspace
+
 # Rust
 **/target
 # C => Rust bindings
