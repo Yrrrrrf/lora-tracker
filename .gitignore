@@ -17,5 +17,4 @@ avr-specs
 **/.vscode
 # todo: Remove this for add the correct paths (on the PlatformIO project)
 **/include
-**/lib
 **/test

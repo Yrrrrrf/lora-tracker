@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"3e9d431de7ff5573","x":-580,"y":-1509,"width":400,"height":400,"type":"file","file":"000-Knowledge/CS/network/LoRa.md"},
+		{"id":"da71cbae466a24a1","x":-580,"y":-1020,"width":400,"height":400,"type":"file","file":"300-Yrrrrrf/lora-tracker/lora-tracker.md"},
+		{"id":"fe06215a9e8f8d8e","type":"file","file":"000-Knowledge/CS/network/computer network.md","x":-1160,"y":-1509,"width":360,"height":400}
+	],
+	"edges":[
+		{"id":"eaf347cf6187dcb3","fromNode":"da71cbae466a24a1","fromSide":"top","toNode":"3e9d431de7ff5573","toSide":"bottom"}
+	]
+}

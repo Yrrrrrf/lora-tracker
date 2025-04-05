@@ -25,10 +25,14 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 | Fase | Estado |
 | - | - |
 | Selección de Hardware | ✅ |
-| Prototipo Básico | 🔄 |
+| Prototipo Básico | ✅ |
 | Pruebas de Conectividad | 🔄 |
 | Optimización de Alcance | 📅 |
 | Prototipo Final | 📅 |
+
+## 🔌 Dashboard
+
+![Dashboard](./resources/img/dashboard.png)
 
 ## 📚 Documentación
 
@@ -39,3 +43,7 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 ### Roadmap
 
 ![Roadmap](./resources/img/road-map.png)
+
+### Licence
+
+This project is under the [MIT](./LICENSE) license.
