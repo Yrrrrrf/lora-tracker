@@ -1,9 +1,9 @@
 # project
 cheatsheet/
-docs/00-main.docx
-docs/lora-tracker.canvas
+docs/
 
-lora-tracker.code-workspace
+# workspace
+**.code-workspace
 
 # Rust
 **/target
@@ -11,8 +11,7 @@ lora-tracker.code-workspace
 avr-specs
 .cargo
 
-
-# Plarform IO
+# Platform IO
 .pio
 **/.vscode
 # todo: Remove this for add the correct paths (on the PlatformIO project)

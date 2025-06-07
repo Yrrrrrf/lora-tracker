@@ -1,7 +1,5 @@
 ---
 tags:
-  - protocol
-  - network
   - project
 subject: Protocolos de transmisión de datos
 ---
@@ -12,9 +10,9 @@ The main goal of this [lora-tracker](https://github.com/Yrrrrrf/lora-tracker) is
 >This protocol is known for its ability to transmit data over long distances with minimal power consumption.
 
 ## Members
-- Fernando Bran Reza Campos
-- Karen Navarro Hurtado
-- Antonio Brayan Peña Bernabe
+- `Fernando Bran Reza Campos`
+- `Karen Navarro Hurtado`
+- `Antonio Brayan Peña Bernabe`
 
 ## Requirements
 - Reach a minimum transmission of $5$ **kilometers**
@@ -38,8 +36,8 @@ The main goal of this [lora-tracker](https://github.com/Yrrrrrf/lora-tracker) is
 ## Resources
 - [Repository](https://github.com/Yrrrrrf/lora-tracker)
 - Documentation
-	- [[300-Yrrrrrf/lora-tracker/00-marco-teorico|00-marco-teorico]]
-	- [[300-Yrrrrrf/lora-tracker/01-especificaciones-técnicas|01-especificaciones-técnicas]]
+	- [00-marco-teorico](00-marco-teorico.md)
+	- [01-especificaciones-técnicas](01-especificaciones-técnicas.md)
 - Links
 	- [Some Arduino + NEO 6M impl](https://www.youtube.com/watch?v=GYYpqHZIG1A)
 	- [LoRaWAN® | The Things Network](https://www.thethingsnetwork.org/docs/lorawan/)
