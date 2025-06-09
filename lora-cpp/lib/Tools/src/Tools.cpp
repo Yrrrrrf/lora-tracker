@@ -1,12 +1,10 @@
 #include "Tools.h"
 
-void blinkLed(int pin, int onTimeMs, int offTimeMs, int repetitions) {
-    for (int i = 0; i < repetitions; ++i) {
+void blinkLed(int pin, int onTimeMs, int offTimeMs) {
         digitalWrite(pin, HIGH);
         delay(onTimeMs);
         digitalWrite(pin, LOW);
         delay(offTimeMs);
-    }
 }
 
 String getFormattedElapsedTime() {

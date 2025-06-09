@@ -24,6 +24,8 @@ void loop() {
     // if (currentTime - lastSerialSendTime >= SERIAL_SEND_INTERVAL_MS) {
     //     lastSerialSendTime = currentTime;
 
+        blinkLed(LED_BUILTIN, 500, 100);
+
         // Simulate some movement/change in data
         mockLatitude += (random(-10, 11) / 100000.0); // Tiny random change
         mockLongitude += (random(-10, 11) / 100000.0); // Tiny random change
@@ -39,8 +41,7 @@ void loop() {
         if (mockAltitude < 0) mockAltitude = 0;
         if (mockSpeed < 0) mockSpeed = 0;
 
-
-        digitalWrite(LED_BUILTIN, HIGH); // Indicate sending data
+        // digitalWrite(LED_BUILTIN, HIGH); // Indicate sending data
 
         Serial.print("{\"lat\":"); Serial.print(mockLatitude, 6);
         Serial.print(",\"lng\":"); Serial.print(mockLongitude, 6);
@@ -50,6 +51,6 @@ void loop() {
         // Serial.print(",\"ts_millis\":"); Serial.print(currentTime); // Use current millis as timestamp
         Serial.println("}");
 
-        digitalWrite(LED_BUILTIN, LOW);
+        // digitalWrite(LED_BUILTIN, LOW);
     // }
 }

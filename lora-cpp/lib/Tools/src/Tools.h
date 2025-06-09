@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-void blinkLed(int pin, int onTimeMs, int offTimeMs, int repetitions = 1);
+void blinkLed(int pin, int onTimeMs, int offTimeMs);
 String getFormattedElapsedTime();
 
 #endif
