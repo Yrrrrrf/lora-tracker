@@ -1,93 +1,100 @@
-#include <Arduino.h>
-#include <LiquidCrystal.h>
+// #include <Arduino.h>
 
-#include <DHT.h>
-#include <DHT_U.h>
+// // Custom Libraries
+// #include <Tools.h>
+// #include <LcdDisplay.h>
+// #include <EnvSensor.h>
+// #include <Gps.h>
 
-#include <SoftwareSerial.h>
-#include <TinyGPS++.h>
+// // --- Configuration ---
+// // GPS
+// const uint8_t GPS_RX_PIN = 8;
+// const uint8_t GPS_TX_PIN = 9;
+// const long GPS_BAUD_RATE = 9600;
 
+// // LCD
+// const int LCD_RS_PIN = 7;
+// const int LCD_E_PIN = 6;
+// const int LCD_D4_PIN = 5;
+// const int LCD_D5_PIN = 4;
+// const int LCD_D6_PIN = 3;
+// const int LCD_D7_PIN = 2;
+// const uint8_t LCD_COLS = 16;
+// const uint8_t LCD_ROWS = 2;
 
-int RXpin = 8;
-int TXpin = 9;
-SoftwareSerial gpsSerial(RXpin, TXpin); // RX, TX
-TinyGPSPlus gps;
-float lattitude,longitude;
+// // DHT Sensor
+// const uint8_t DHT_SENSOR_PIN = 12;
+// const uint8_t DHT_SENSOR_TYPE = DHT11; // Or DHT22, DHT21
 
-// * LCD setup
-int RSpin = 7;  // Register Select pin
-int Epin = 6;  // Enable pin
-LiquidCrystal lcd(RSpin, Epin, 5, 4, 3, 2);	// pines RS, E, D4, D5, D6, D7 de modulo 1602A
+// // Intervals
+// const unsigned long SERIAL_SEND_INTERVAL_MS = 2000;
+// const unsigned long LCD_UPDATE_INTERVAL_MS = 1000;
 
-int dhtPin = 12; // pin DATA de DHT22 a pin digital 2
-DHT dht(dhtPin, DHT11);
-int temperature, humidity;
+// // --- Global Objects ---
+// Gps gps(GPS_RX_PIN, GPS_TX_PIN, GPS_BAUD_RATE); // Changed class name
+// LcdDisplay lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
+// EnvironmentSensor dhtSensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
 
+// // --- Timing Variables ---
+// unsigned long lastSerialSendTime = 0;
+// unsigned long lastLcdUpdateTime = 0;
 
-// * Some fn's declarations...
-void blinkPin(int pin, int onTime, int offTime) {
-	for (int i = 0; i < 2; i++) {
-		digitalWrite(pin, i % 2 == 0 ? HIGH : LOW);
-		delay(i % 2 == 0 ? onTime : offTime);
-	}
-}
+// void setup() {
+//     Serial.begin(9600);
+//     pinMode(LED_BUILTIN, OUTPUT);
 
-void setLCD(int col, int row, String msg) {
-	lcd.setCursor(col, row);
-	lcd.print(msg);
-	if (msg.length() > 16) {
-		lcd.scrollDisplayLeft();
-	}
-}
+//     gps.begin(); // Changed object name
+//     lcd.begin(LCD_COLS, LCD_ROWS);
+//     dhtSensor.begin();
 
-void setDHT(int col, int row) {
-	temperature = dht.readTemperature();
-	humidity = dht.readHumidity();
-	setLCD(col, row, String(temperature) + "C");
-	setLCD(col + 5, row, String(humidity) + "%");
-}
+//     lcd.print(0, 0, "LoRa Tracker");
+//     lcd.print(0, 1, "Initializing...");
+//     blinkLed(LED_BUILTIN, 100, 100, 3);
+//     lcd.clear();
+//     Serial.println("System Initialized.");
+// }
 
-// String printElapsedTime(int elapsed_seconds) {
-String printElapsedTime() {
-	int elapsed_seconds = millis() / 1000;
-	char time_fmt[9]; // Buffer to hold the formatted time string (8 chars + null terminator)
-	sprintf(time_fmt, "%02d:%02d:%02d",  // * fmt time str -> HH:MM:SS
-		(elapsed_seconds / 3600),
-		(elapsed_seconds % 3600) / 60,
-		(elapsed_seconds % 60)
-	);
-	return String(time_fmt);
-}
+// void loop() {
+//     bool newGpsDataProcessed = gps.processIncomingData(); // Changed object name
 
-// * Main code --------------------------------------------------------
+//     unsigned long currentTime = millis();
 
-// * Setup fn (runs once at the beginning)
-void setup() {
-	Serial.begin(9600);	// Set the baud rate to your computer's serial port
-	lcd.begin(16, 2);	// inicializa a display de 16 columnas y 2 lineas
-	dht.begin();	// inicializa el sensor DHT
-	pinMode(LED_BUILTIN, OUTPUT);
+//     if (currentTime - lastSerialSendTime >= SERIAL_SEND_INTERVAL_MS) {
+//         lastSerialSendTime = currentTime;
+//         GpsReading gpsData = gps.getCurrentReading(); // Changed object name
 
-	// Start the software serial port at the GPS's default baud
-	gpsSerial.begin(9600); 	// * Baud rate of the GPS
+//         if (gpsData.isLocationValid) {
+//             digitalWrite(LED_BUILTIN, HIGH);
+//             Serial.print("{\"lat\":"); Serial.print(gpsData.latitude, 6);
+//             Serial.print(",\"lng\":"); Serial.print(gpsData.longitude, 6);
+//             if (gpsData.isAltitudeValid) { Serial.print(",\"alt\":"); Serial.print(gpsData.altitudeMeters, 1); }
+//             if (gpsData.isSpeedValid) { Serial.print(",\"spd\":"); Serial.print(gpsData.speedMps, 1); }
+//             if (gpsData.isHdopValid) { Serial.print(",\"acc_hdop\":"); Serial.print(gpsData.hdop, 1); }
+//             Serial.print(",\"ts_millis\":"); Serial.print(currentTime);
+//             Serial.println("}");
+//             digitalWrite(LED_BUILTIN, LOW);
+//         }
+//     }
 
-}
+//     if (currentTime - lastLcdUpdateTime >= LCD_UPDATE_INTERVAL_MS) {
+//         lastLcdUpdateTime = currentTime;
+        
+//         lcd.print(0, 0, getFormattedElapsedTime());
 
-// * Main loop
-void loop() {
-	String time_fmt = printElapsedTime();
-    setLCD(0, 0, time_fmt);
-	setDHT(0, 1);
-    // Serial.println("Time: " + time_fmt);
+//         SensorData sensorReadings = dhtSensor.readData();
+//         if (sensorReadings.isValid) {
+//             String tempStr = String(sensorReadings.temperatureCelsius, 1) + "C";
+//             String humStr = String(sensorReadings.humidityPercent, 0) + "% ";
+//             lcd.print(0, 1, tempStr + " " + humStr);
+//         } else {
+//             lcd.print(0, 1, "Sensor Err");
+//         }
 
-	// while (gpsSerial.available()) {
-		int data = gpsSerial.read();
-		Serial.print(data);
-		// if (gps.encode(data)) {
-			lattitude = (gps.location.lat());
-			longitude = (gps.location.lng());
-			Serial.println("Location: " + String(lattitude) + ", " + String(longitude));
-		// }
-	// }
-	// delay(1000);
-}
+//         GpsReading gpsData = gps.getCurrentReading(); // Changed object name
+//         if(gpsData.isLocationValid && gpsData.fixAgeMs < 5000) {
+//              lcd.print(10, 0, "GPS OK");
+//         } else {
+//              lcd.print(10, 0, "GPS No");
+//         }
+//     }
+// }
