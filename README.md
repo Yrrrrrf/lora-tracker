@@ -32,17 +32,13 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 ## 🔌 Dashboard
 
-![Dashboard](./resources/img/dashboard.png)
+![Dashboard](./resources/img/dashboard.jpeg)
 
 ## 📚 Documentación
 
 - [Main](./lora-tracker.md)
 - [Marco Teórico](docs/00-marco-teorico.md)
 - [Espeficicaiones Técnicas](docs/01-especificaciones-técnicas.md)
-
-### Roadmap
-
-![Roadmap](./resources/img/road-map.png)
 
 ### Licence
 

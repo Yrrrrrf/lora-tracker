@@ -117,16 +117,6 @@ class LocationStore {
     this.updateLocation(newLocation);
   }
 
-  // [NEW] Helper to avoid code duplication
-  private updateLocation(newLocation: Position): void {
-    this.currentLocation = newLocation;
-    let updatedHistory = [...this.positionHistory, newLocation];
-    if (CONFIG.MAX_HISTORY_POINTS > 0 && updatedHistory.length > CONFIG.MAX_HISTORY_POINTS) {
-      updatedHistory = updatedHistory.slice(-CONFIG.MAX_HISTORY_POINTS);
-    }
-    this.positionHistory = updatedHistory;
-  }
-
   resetHistory(): void {
     this.positionHistory = [];
   }
