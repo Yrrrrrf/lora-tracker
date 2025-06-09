@@ -26,7 +26,6 @@
     }
   }
 
-  // [REVERTED] Simple, robust onMount based on your original working code
   onMount(async () => {
     const leafletModule = await import('leaflet');
     L = leafletModule.default;
