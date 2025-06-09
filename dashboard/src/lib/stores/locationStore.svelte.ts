@@ -19,7 +19,6 @@ function calculateDistance(pos1: Position, pos2: Position): number {
 }
 
 class LocationStore {
-  // [REVERTED] Start with a valid, non-null object. This is the key fix.
   currentLocation = $state<Position>({
     lat: 19.4326,
     lng: -99.1332,
@@ -30,33 +29,81 @@ class LocationStore {
   });
 
   positionHistory = $state<Position[]>([]);
+  mapSettings = $state({ style: 'streets' as MapStyle, autoCenter: true });
   
-  mapSettings = $state({
-    style: 'streets' as MapStyle,
-    autoCenter: true,
-    isFullscreen: false
-  });
-  
-  // [NEW] State for managing real-time fetching
+  // [NEW] Connection and fetching state
   fetchIntervalId = $state<number | null>(null);
+  isFetching = $state(false);
+  connectionState = $state<'disconnected' | 'connecting' | 'connected'>('disconnected');
   
-  // Derived values
-  trailPoints = $derived(
-    this.positionHistory.map(pos => [pos.lat, pos.lng] as [number, number])
-  );
-  
+  // [NEW] Derived state to make UI code cleaner
+  isLive = $derived(this.fetchIntervalId !== null);
+
+  // Derived values for trip summary
+  trailPoints = $derived(this.positionHistory.map(pos => [pos.lat, pos.lng] as [number, number]));
   totalDistance = $derived(
     this.positionHistory.reduce((total, pos, index) => {
       if (index === 0) return 0;
       return total + calculateDistance(this.positionHistory[index - 1], pos);
     }, 0)
   );
+
   
   constructor() {
-    // [REVERTED] Initialize history with the starting location.
     this.positionHistory = [this.currentLocation];
   }
-  
+
+  // --- Core Methods ---
+  private updateLocation(newLocation: Position): void {
+    this.currentLocation = newLocation;
+    let updatedHistory = [...this.positionHistory, newLocation];
+    if (CONFIG.MAX_HISTORY_POINTS > 0 && updatedHistory.length > CONFIG.MAX_HISTORY_POINTS) {
+      updatedHistory = updatedHistory.slice(-CONFIG.MAX_HISTORY_POINTS);
+    }
+    this.positionHistory = updatedHistory;
+  }
+
+  async fetchLatestLocation() {
+    if (!browser || this.isFetching) return;
+    this.isFetching = true;
+    // Set to connecting only if we are in live mode
+    if(this.isLive) this.connectionState = 'connecting';
+
+    try {
+      const response = await fetch('/api/location');
+      if (!response.ok) {
+        this.connectionState = 'disconnected';
+        throw new Error(`API fetch failed: ${response.statusText}`);
+      }
+      const data: { currentLocation: Position } = await response.json();
+      
+      this.connectionState = 'connected';
+
+      if (data.currentLocation && data.currentLocation.timestamp !== this.currentLocation.timestamp) {
+        this.updateLocation(data.currentLocation);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      this.connectionState = 'disconnected';
+    } finally {
+      this.isFetching = false;
+    }
+  }
+
+  startLiveUpdates(intervalMs = 3000) {
+    if (!browser || this.fetchIntervalId) return;
+    this.fetchIntervalId = window.setInterval(() => this.fetchLatestLocation(), intervalMs);
+    this.fetchLatestLocation(); // Fetch immediately
+  }
+
+  stopLiveUpdates() {
+    if (this.fetchIntervalId) {
+      clearInterval(this.fetchIntervalId);
+      this.fetchIntervalId = null;
+    }
+    this.connectionState = 'disconnected';
+  }
+ 
   // [KEPT] The simulation logic is valuable for testing.
   moveMarker(): void {
     const newLocation: Position = {
@@ -80,36 +127,8 @@ class LocationStore {
     this.positionHistory = updatedHistory;
   }
 
-  // [NEW] Fetching logic for live data
-  async fetchLatestLocation() {
-    if (!browser) return;
-    try {
-      const response = await fetch('/api/location');
-      if (!response.ok) return;
-      const data: { currentLocation: Position } = await response.json();
-      if (data.currentLocation && data.currentLocation.timestamp !== this.currentLocation.timestamp) {
-        this.updateLocation(data.currentLocation);
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
-    }
-  }
-
-  startLiveUpdates(intervalMs = 3000) {
-    if (!browser || this.fetchIntervalId) return;
-    this.fetchLatestLocation(); // Fetch immediately
-    this.fetchIntervalId = window.setInterval(() => this.fetchLatestLocation(), intervalMs);
-  }
-
-  stopLiveUpdates() {
-    if (this.fetchIntervalId) {
-      clearInterval(this.fetchIntervalId);
-      this.fetchIntervalId = null;
-    }
-  }
-
   resetHistory(): void {
-    this.positionHistory = [this.currentLocation];
+    this.positionHistory = [];
   }
   
   toggleAutoCenter = (): void => { this.mapSettings = { ...this.mapSettings, autoCenter: !this.mapSettings.autoCenter }; }

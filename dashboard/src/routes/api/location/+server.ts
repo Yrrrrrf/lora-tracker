@@ -22,16 +22,18 @@ export const POST: RequestHandler = async ({ request }) => {
     try {
         const data = await request.json();
 
+        // [ADDED] Server-side log for POST requests
+        console.log(`[API] POST received: lat=${data.lat.toFixed(4)}, lng=${data.lng.toFixed(4)}`);
+
         if (typeof data.lat !== 'number' || typeof data.lng !== 'number') {
             return json({ error: 'Invalid location data' }, { status: 400 });
         }
         
-        // The bridge should now be adding the timestamp, but we can do it here as a fallback
         const newPosition: Position = {
             lat: data.lat,
             lng: data.lng,
-            timestamp: new Date().toISOString(), // Generate timestamp on arrival
-            accuracy: data.acc_hdop, // Assuming 'acc_hdop' from your mock
+            timestamp: new Date().toISOString(),
+            accuracy: data.acc_hdop,
             altitude: data.alt,
             speed: data.spd,
         };
@@ -53,8 +55,10 @@ export const POST: RequestHandler = async ({ request }) => {
 export const GET: RequestHandler = async ({ url }) => {
     const includeHistory = url.searchParams.get('history') === 'true';
 
-    // [REVISED] If no data has arrived yet, return the default initial position.
-    // Otherwise, return the actual current location.
+    // [ADDED] Server-side log for GET requests
+    const status = currentLocation ? "Live Data" : "Initial Data";
+    console.log(`[API] GET request from frontend. Providing: ${status}`);
+
     const response = {
         currentLocation: currentLocation ?? initialPosition,
         ...(includeHistory ? { locationHistory } : {})
