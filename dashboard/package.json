@@ -18,7 +18,6 @@
 		"@tailwindcss/vite": "4.1.8",
 		"@types/leaflet": "1.9.18",
 		"@types/node": "22.15.30",
-		"@types/serialport": "8.0.5",
 		"daisyui": "5.0.43",
 		"svelte": "5.33.18",
 		"svelte-check": "4.2.1",
@@ -28,7 +27,6 @@
 	},
 	"dependencies": {
 		"leaflet": "1.9.4",
-		"lucide-svelte": "0.513.0",
-		"serialport": "13.0.0"
+		"lucide-svelte": "0.513.0"
 	}
 }
