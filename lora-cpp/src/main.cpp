@@ -1,43 +1,43 @@
-// #include <Arduino.h>
+#include <Arduino.h>
 
-// // Custom Libraries
-// #include <Tools.h>
-// #include <LcdDisplay.h>
-// #include <EnvSensor.h>
-// #include <Gps.h>
+// Custom Libraries
+#include <Tools.h>
+#include <LcdDisplay.h>
+#include <EnvSensor.h>
+#include <Gps.h>
 
-// // --- Configuration ---
-// // GPS
-// const uint8_t GPS_RX_PIN = 8;
-// const uint8_t GPS_TX_PIN = 9;
-// const long GPS_BAUD_RATE = 9600;
+// --- Configuration ---
+// GPS
+const uint8_t GPS_RX_PIN = 8;
+const uint8_t GPS_TX_PIN = 9;
+const long GPS_BAUD_RATE = 9600;
 
-// // LCD
-// const int LCD_RS_PIN = 7;
-// const int LCD_E_PIN = 6;
-// const int LCD_D4_PIN = 5;
-// const int LCD_D5_PIN = 4;
-// const int LCD_D6_PIN = 3;
-// const int LCD_D7_PIN = 2;
-// const uint8_t LCD_COLS = 16;
-// const uint8_t LCD_ROWS = 2;
+// LCD
+const int LCD_RS_PIN = 7;
+const int LCD_E_PIN = 6;
+const int LCD_D4_PIN = 5;
+const int LCD_D5_PIN = 4;
+const int LCD_D6_PIN = 3;
+const int LCD_D7_PIN = 2;
+const uint8_t LCD_COLS = 16;
+const uint8_t LCD_ROWS = 2;
 
-// // DHT Sensor
-// const uint8_t DHT_SENSOR_PIN = 12;
-// const uint8_t DHT_SENSOR_TYPE = DHT11; // Or DHT22, DHT21
+// DHT Sensor
+const uint8_t DHT_SENSOR_PIN = 12;
+const uint8_t DHT_SENSOR_TYPE = DHT11; // Or DHT22, DHT21
 
-// // Intervals
-// const unsigned long SERIAL_SEND_INTERVAL_MS = 2000;
-// const unsigned long LCD_UPDATE_INTERVAL_MS = 1000;
+// Intervals
+const unsigned long SERIAL_SEND_INTERVAL_MS = 2000;
+const unsigned long LCD_UPDATE_INTERVAL_MS = 1000;
 
-// // --- Global Objects ---
-// Gps gps(GPS_RX_PIN, GPS_TX_PIN, GPS_BAUD_RATE); // Changed class name
-// LcdDisplay lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
-// EnvironmentSensor dhtSensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
+// --- Global Objects ---
+Gps gps(GPS_RX_PIN, GPS_TX_PIN, GPS_BAUD_RATE); // Changed class name
+LcdDisplay lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
+EnvironmentSensor dhtSensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
 
-// // --- Timing Variables ---
-// unsigned long lastSerialSendTime = 0;
-// unsigned long lastLcdUpdateTime = 0;
+// --- Timing Variables ---
+unsigned long lastSerialSendTime = 0;
+unsigned long lastLcdUpdateTime = 0;
 
 // void setup() {
 //     Serial.begin(9600);
