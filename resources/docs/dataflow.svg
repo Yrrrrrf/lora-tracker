@@ -1,0 +1,298 @@
+<svg width="1400" height="700" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <!-- Definiciones y Estilos -->
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1"/>
+    </linearGradient>
+    
+    <linearGradient id="trackerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:0.15"/>
+    </linearGradient>
+    
+    <linearGradient id="baseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:0.15"/>
+    </linearGradient>
+    
+    <linearGradient id="dashboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:0.15"/>
+    </linearGradient>
+
+    <!-- Sombras -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    
+    <filter id="iconGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      .bg { fill: url(#bgGradient); }
+      .title { 
+        font-size: 32px; 
+        font-weight: 800; 
+        fill: #1e293b; 
+        text-anchor: middle;
+        letter-spacing: -0.02em;
+      }
+      .tier-title { 
+        font-size: 20px; 
+        font-weight: 700; 
+        fill: #334155; 
+        text-anchor: middle;
+        letter-spacing: -0.01em;
+      }
+      .tier-number {
+        font-size: 18px;
+        font-weight: 900;
+        fill: #ffffff;
+        text-anchor: middle;
+      }
+      .box { 
+        fill: #ffffff; 
+        stroke: rgba(148, 163, 184, 0.2); 
+        stroke-width: 2; 
+        rx: 12; 
+        ry: 12;
+        filter: url(#cardShadow);
+      }
+      .component-title { 
+        font-size: 16px; 
+        font-weight: 700; 
+        fill: #1e293b; 
+        text-anchor: middle;
+        letter-spacing: -0.01em;
+      }
+      .component-subtitle { 
+        font-size: 12px; 
+        fill: #64748b; 
+        text-anchor: middle;
+        font-family: 'JetBrains Mono', Monaco, Consolas, monospace;
+      }
+      .arrow-line { 
+        stroke: #6366f1; 
+        stroke-width: 3; 
+        marker-end: url(#arrowhead);
+        opacity: 0.8;
+      }
+      .arrow-text { 
+        font-size: 13px; 
+        fill: #4338ca; 
+        font-weight: 600; 
+        text-anchor: middle;
+        letter-spacing: -0.01em;
+      }
+      .data-text { 
+        font-size: 12px; 
+        fill: #059669; 
+        font-weight: 500;
+        text-anchor: middle;
+        font-family: 'JetBrains Mono', Monaco, Consolas, monospace;
+      }
+      .rf-wave {
+        stroke: #f59e0b;
+        stroke-width: 2;
+        fill: none;
+        opacity: 0.7;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+    </style>
+    
+    <marker id="arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 L 3 6 z" fill="#6366f1"/>
+    </marker>
+    
+    <!-- Iconos mejorados -->
+    <g id="icon-gps">
+      <circle cx="12" cy="12" r="10" fill="#3b82f6" opacity="0.2"/>
+      <path fill="#3b82f6" d="M12 8.5A3.5 3.5 0 1 0 8.5 12A3.5 3.5 0 0 0 12 8.5m0-5.5A9 9 0 0 1 21 12a9 9 0 0 1-9 9 9 9 0 0 1-9-9 9 9 0 0 1 9-9m0-2a11 11 0 0 0-11 11 11 11 0 0 0 11 11 11 11 0 0 0 11-11A11 11 0 0 0 12 1m0 18.5a7.5 7.5 0 1 1 7.5-7.5 7.5 7.5 0 0 1-7.5 7.5M4.5 12H1m22 0h-3.5M12 4.5V1m0 22v-3.5"/>
+    </g>
+    
+    <g id="icon-arduino">
+      <circle cx="12" cy="12" r="10" fill="#00acc1" opacity="0.2"/>
+      <path fill="#00acc1" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8 3h2v2h-2V6m0 4h2v2h-2v-2m-4-4h2v2H7V6m0 4h2v2H7v-2m8 4h2v2h-2v-2m-4 0h2v2h-2v-2m4-4h2v2h-2V6m-8 8h2v2H7v-2Z"/>
+    </g>
+    
+    <g id="icon-lora">
+      <circle cx="12" cy="12" r="10" fill="#f59e0b" opacity="0.2"/>
+      <path fill="#f59e0b" d="M12 3C10.5 3 9.09 3.34 7.8 3.91C6.5 4.5 5.4 5.33 4.5 6.2L12 13.7l7.5-7.5c-.9-.87-2-1.7-3.3-2.29C14.91 3.34 13.5 3 12 3m0 2.5c.89 0 1.74.19 2.5.5C15.81 6.5 16.5 7.19 17.09 7.91L12 12.91l-5.09-5c.59-.72 1.28-1.41 2.59-1.91c.76-.31 1.61-.5 2.5-.5M18.5 9.35L12 15.85l-6.5-6.5C4.64 10.23 4 11.1 4 12c0 .24.04.47.09.7l-.09.05v.25l8 8h.05l.09.09.09-.09H12l8-8v-.25l-.09-.05c.05-.23.09-.46.09-.7c0-.9-.64-1.77-1.5-2.65Z"/>
+    </g>
+    
+    <g id="icon-python">
+      <circle cx="12" cy="12" r="10" fill="#10b981" opacity="0.2"/>
+      <path fill="#10b981" d="M9.35 2A4.35 4.35 0 0 0 5 6.35v1.93c0 2.4 1.95 4.35 4.35 4.35h5.3A2.33 2.33 0 0 1 17 14.95v2.7A4.35 4.35 0 0 1 12.65 22H9.35A4.35 4.35 0 0 1 5 17.65v-1.93c0-2.4 1.95-4.35 4.35-4.35h5.3A2.33 2.33 0 0 0 17 9.05V6.35A4.35 4.35 0 0 0 12.65 2h-3.3M8.5 4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 13a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/>
+    </g>
+    
+    <g id="icon-server">
+      <circle cx="12" cy="12" r="10" fill="#8b5cf6" opacity="0.2"/>
+      <path fill="#8b5cf6" d="M4 1h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2m0 2v6h16V3H4m2 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m3 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2M4 13h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m0 2v6h16v-6H4m2 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m3 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/>
+    </g>
+    
+    <g id="icon-browser">
+      <circle cx="12" cy="12" r="10" fill="#ec4899" opacity="0.2"/>
+      <path fill="#ec4899" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2M4 6h16v2H4V6m0 4h16v8H4v-8Z"/>
+    </g>
+
+    <!-- Círculos numerados -->
+    <g id="circle-1">
+      <circle cx="12" cy="12" r="12" fill="#3b82f6"/>
+      <text x="12" y="18" class="tier-number">1</text>
+    </g>
+    <g id="circle-2">
+      <circle cx="12" cy="12" r="12" fill="#10b981"/>
+      <text x="12" y="18" class="tier-number">2</text>
+    </g>
+    <g id="circle-3">
+      <circle cx="12" cy="12" r="12" fill="#f59e0b"/>
+      <text x="12" y="18" class="tier-number">3</text>
+    </g>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="100%" height="100%" class="bg" />
+
+  <!-- Título Principal -->
+  <text x="700" y="45" class="title">LoRa Tracker - Flujo de Datos</text>
+
+  <!-- Contenedores de Capas mejorados -->
+  <rect x="30" y="80" width="420" height="580" rx="20" ry="20" fill="url(#trackerGradient)" stroke="#3b82f6" stroke-width="2" opacity="0.8"/>
+  <use href="#circle-1" transform="translate(40, 90)"/>
+  <text x="250" y="125" class="tier-title">Dispositivo Tracker (Móvil)</text>
+  
+  <rect x="480" y="80" width="420" height="580" rx="20" ry="20" fill="url(#baseGradient)" stroke="#10b981" stroke-width="2" opacity="0.8"/>
+  <use href="#circle-2" transform="translate(490, 90)"/>
+  <text x="690" y="125" class="tier-title">Estación Base (Puente)</text>
+  
+  <rect x="930" y="80" width="420" height="580" rx="20" ry="20" fill="url(#dashboardGradient)" stroke="#f59e0b" stroke-width="2" opacity="0.8"/>
+  <use href="#circle-3" transform="translate(940, 90)"/>
+  <text x="1140" y="125" class="tier-title">Dashboard (Aplicación Web)</text>
+
+  <!-- Componentes Tracker con mejor diseño -->
+  <g transform="translate(80, 170)">
+    <rect class="box" width="140" height="90"/>
+    <use href="#icon-gps" transform="translate(45, 15) scale(2.2)" filter="url(#iconGlow)"/>
+    <text x="70" y="70" class="component-title">Módulo GPS</text>
+    <text x="70" y="85" class="component-subtitle">NEO-6M</text>
+  </g>
+  
+  <g transform="translate(280, 250)">
+    <rect class="box" width="140" height="130"/>
+    <use href="#icon-arduino" transform="translate(45, 15) scale(2.5)" filter="url(#iconGlow)"/>
+    <text x="70" y="85" class="component-title">Arduino</text>
+    <text x="70" y="102" class="component-subtitle">lora-cpp/src/main.cpp</text>
+    <text x="70" y="117" class="component-subtitle">Gps.h, LoRaRadio.h</text>
+  </g>
+  
+  <g transform="translate(80, 450)">
+    <rect class="box" width="140" height="90"/>
+    <use href="#icon-lora" transform="translate(45, 15) scale(2.2)" filter="url(#iconGlow)"/>
+    <text x="70" y="70" class="component-title">Módulo LoRa</text>
+    <text x="70" y="85" class="component-subtitle">SX1276 (TX)</text>
+  </g>
+
+  <!-- Componentes Estación Base -->
+  <g transform="translate(530, 450)">
+    <rect class="box" width="140" height="90"/>
+    <use href="#icon-lora" transform="translate(45, 15) scale(2.2)" filter="url(#iconGlow)"/>
+    <text x="70" y="70" class="component-title">Módulo LoRa</text>
+    <text x="70" y="85" class="component-subtitle">SX1276 (RX)</text>
+  </g>
+  
+  <g transform="translate(720, 250)">
+    <rect class="box" width="140" height="130"/>
+    <use href="#icon-arduino" transform="translate(45, 15) scale(2.5)" filter="url(#iconGlow)"/>
+    <text x="70" y="85" class="component-title">Arduino</text>
+    <text x="70" y="102" class="component-subtitle">lora-cpp/src/</text>
+    <text x="70" y="117" class="component-subtitle">main-receiver.cpp</text>
+  </g>
+  
+  <g transform="translate(530, 170)">
+    <rect class="box" width="330" height="60"/>
+    <use href="#icon-python" transform="translate(15, 15) scale(1.5)" filter="url(#iconGlow)"/>
+    <text x="175" y="35" class="component-title">Puente Python</text>
+    <text x="175" y="50" class="component-subtitle">dashboard/python/main.py</text>
+  </g>
+
+  <!-- Componentes Dashboard -->
+  <g transform="translate(980, 170)">
+    <rect class="box" width="320" height="110"/>
+    <use href="#icon-server" transform="translate(135, 15) scale(2.2)" filter="url(#iconGlow)"/>
+    <text x="160" y="75" class="component-title">Backend SvelteKit</text>
+    <text x="160" y="92" class="component-subtitle">/api/location/+server.ts</text>
+  </g>
+  
+  <g transform="translate(980, 380)">
+    <rect class="box" width="320" height="110"/>
+    <use href="#icon-browser" transform="translate(135, 15) scale(2.2)" filter="url(#iconGlow)"/>
+    <text x="160" y="75" class="component-title">Frontend Svelte</text>
+    <text x="160" y="92" class="component-subtitle">/routes/+page.svelte</text>
+  </g>
+  
+  <!-- Flechas y Datos mejorados -->
+  <!-- Tracker Interno -->
+  <path d="M 150 260 V 280" class="arrow-line"/>
+  <text x="200" y="265" class="arrow-text">Serial (UART)</text>
+  <text x="200" y="280" class="data-text">Señales NMEA</text>
+  
+  <path d="M 280 335 H 190 L 150 450" class="arrow-line"/>
+  <text x="220" y="390" class="arrow-text">SPI</text>
+  <text x="220" y="405" class="data-text">Payload JSON</text>
+  
+  <!-- LoRa RF con ondas animadas -->
+  <path d="M 220 495 H 530" class="arrow-line"/>
+  <!-- Ondas RF animadas -->
+  <path d="M 250 485 Q 300 475 350 485 Q 400 475 450 485 Q 500 475 530 485" class="rf-wave"/>
+  <path d="M 250 495 Q 300 485 350 495 Q 400 485 450 495 Q 500 485 530 495" class="rf-wave"/>
+  <path d="M 250 505 Q 300 515 350 505 Q 400 515 450 505 Q 500 515 530 505" class="rf-wave"/>
+  
+  <text x="375" y="470" class="arrow-text">Comunicación por Radiofrecuencia (RF)</text>
+  <text x="375" y="485" class="data-text">Paquete LoRa 433MHz</text>
+  <text x="375" y="530" class="data-text">Alcance: hasta 10km</text>
+  
+  <!-- Base Interno -->
+  <path d="M 600 450 V 350 H 720" class="arrow-line"/>
+  <text x="650" y="390" class="arrow-text">SPI</text>
+  <text x="650" y="405" class="data-text">Payload JSON</text>
+  
+  <path d="M 790 250 V 220 H 695" class="arrow-line"/>
+  <text x="740" y="190" class="data-text">JSON por línea</text>
+  
+  <!-- Web -->
+  <path d="M 860 200 H 980" class="arrow-line"/>
+  <text x="920" y="185" class="arrow-text">HTTP POST</text>
+  <text x="920" y="200" class="data-text">Datos de Ubicación</text>
+  
+  <path d="M 1140 280 V 380" class="arrow-line"/>
+  <text x="1040" y="325" class="arrow-text">HTTP GET (Polling)</text>
+  <text x="1040" y="340" class="data-text">Posición Actual + Historial</text>
+  
+  <!-- Indicadores de estado -->
+  <circle cx="150" cy="590" r="8" fill="#10b981">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="170" y="595" style="font-size: 12px; fill: #10b981; font-weight: 600;">Activo</text>
+  
+  <circle cx="600" cy="590" r="8" fill="#f59e0b">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <text x="620" y="595" style="font-size: 12px; fill: #f59e0b; font-weight: 600;">Procesando</text>
+  
+  <circle cx="1140" cy="590" r="8" fill="#3b82f6">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <text x="1160" y="595" style="font-size: 12px; fill: #3b82f6; font-weight: 600;">En línea</text>
+  
+</svg>

@@ -18,31 +18,29 @@ Sistema de seguimiento GPS de largo alcance utilizando tecnología LoRa, diseña
 
 - Módulo LoRa `SX1276` 433MHz
 - Módulo GPS de bajo consumo `NEO-6M`
-- `Arduino` o `ESP32` como microcontrolador
+- `Arduino UNO` o `Arduino Nano` como microcontrolador
 
-## 📋 Estado del Proyecto
+## 👥 Autores
 
-| Fase | Estado |
-| - | - |
-| Selección de Hardware | ✅ |
-| Prototipo Básico | ✅ |
-| Pruebas de Conectividad | 🔄 |
-| Optimización de Alcance | 📅 |
-| Prototipo Final | 📅 |
+- Fernando Bryan Reza Campos
+- Karen Navarro Hurtado
 
 ## 🔌 Dashboard
 
 ![Dashboard](./resources/img/dashboard.jpeg)
 
-## Prototipo funcional
+## Prototipo Funcional
 
 ![Prototipo](./resources/img/lora-tracker.png)
 
 ## 📚 Documentación
 
-- [Main](./lora-tracker.md)
-- [Marco Teórico](docs/00-marco-teorico.md)
-- [Espeficicaiones Técnicas](docs/01-especificaciones-técnicas.md)
+- [Marco Teórico](./resources/docs/00-marco-teorico.md)
+- [Especificaciones Técnicas](./resources/docs/01-especificaciones-técnicas.md)
+
+## Flujo de Datos
+
+![FLujo de datos](./resources/docs/dataflow.svg)
 
 ### Licence
 

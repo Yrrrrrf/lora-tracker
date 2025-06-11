@@ -1,91 +1,53 @@
-## Bases Teóricas de la Comunicación de Datos
+# Marco Teórico del Proyecto LoRa Tracker
 
-  ### Conceptos Analógico vs Digital
-- **Señales analógicas**: Son continuas y representan datos como ondas que varían continuamente.
-- **Señales digitales**: Son discretas y representan datos como pulsos distintos (0s y 1s).
-- **Importancia**: LoRa utiliza técnicas digitales sobre un medio analógico, por lo que entender ambos conceptos es fundamental. 
-[[signals]]
-[[radio signals]]
-#todo
-### Análisis de Fourier y Espectro
-- **Principio clave**: Cualquier señal puede descomponerse en sumas de ondas senoidales de diferentes frecuencias.
-- **Aplicación práctica**: Te permite entender cómo se comportará tu señal LoRa en el espectro de 433MHz y qué ancho de banda ocupará.
-- **Impacto en el diseño**: Determina la separación necesaria entre canales y ayuda a evitar interferencias. 
+Este documento establece las bases teóricas sobre las que se construye el proyecto, abarcando los principios de comunicación por radiofrecuencia, las particularidades de la tecnología LoRa y los fundamentos del sistema de posicionamiento GPS.
 
-### Ancho de Banda y Capacidad del Canal
-- **Ancho de banda**: Rango de frecuencias que ocupa una señal (medido en Hz).
-- **Fórmula de Shannon**: C = W × log₂(1 + S/N)
-	- Donde C es capacidad en bits por segundo, W es ancho de banda, S/N es relación señal-ruido
-- **Para tu proyecto**: Un mayor ancho de banda permite más datos pero consume más energía; LoRa optimiza esta relación.
+## Fundamentos de Radiocomunicación
 
-### Modulación: Clave para [[000-Knowledge/CS/network/LoRa]]
-- **Concepto**: Proceso de codificar información en una onda portadora.
-- **Tipos principales**:
-	- ASK (Amplitude Shift Keying): Varía la amplitud
-	- FSK (Frequency Shift Keying): Varía la frecuencia
-	- PSK (Phase Shift Keying): Varía la fase
-- **CSS en LoRa**: LoRa usa Chirp Spread Spectrum, una técnica especial que "dispersa" la señal para hacerla más resistente a interferencias y permitir mayor alcance.
+### Modulación: Chirp Spread Spectrum (CSS)
+- **Principio Clave**: La tecnología LoRa se basa en la modulación patentada **Chirp Spread Spectrum (CSS)**. A diferencia de las modulaciones tradicionales, CSS codifica la información en "chirps", que son señales de banda ancha cuya frecuencia aumenta o disminuye a lo largo del tiempo.
+- **Ventajas para el Proyecto**:
+    - **Resistencia al Ruido**: La energía de la señal se distribuye en un ancho de banda amplio, lo que permite que el receptor la decodifique incluso si la señal está por debajo del nivel de ruido del entorno. Esto es fundamental para lograr comunicación en condiciones no ideales.
+    - **Largo Alcance**: La robustez de la modulación permite mantener un enlace de comunicación estable a grandes distancias con una potencia de transmisión muy baja, optimizando la duración de la batería del tracker.
+    - **Coexistencia**: Múltiples dispositivos pueden transmitir en el mismo canal con mínima interferencia mutua, gracias a la cuasi-ortogonalidad de los chirps con diferentes factores de dispersión.
 
-## Espectro Electromagnético y Bandas de Frecuencia
-### Organización del Espectro
-- **Bandas principales**: ELF, VLF, LF, MF, HF, VHF, UHF, SHF, EHF
-- **Características de la banda de 433MHz** (UHF):
-	- Pertenece a la banda UHF (300-3000 MHz)
-	- Buena penetración en edificios
-	- Longitud de onda aproximada: 69 cm
-	- Banda ISM de uso libre en muchas regiones
-### Bandas ISM de Uso Libre
-- **Concepto**: Bandas Industrial, Scientific and Medical, disponibles sin licencia
-- **Principales bandas**: 433 MHz (Europa), 915 MHz (América), 2.4 GHz (mundial)
-- **Regulaciones**: Potencia máxima permitida y ciclo de trabajo (importante para LoRa)
-- **Ventaja para tu proyecto**: La banda 433 MHz ofrece buen equilibrio entre alcance y tamaño de antena  
+### Banda de Frecuencia y Espectro
+- **Banda de Operación**: El proyecto opera en la banda de **433MHz**, que pertenece a las bandas ISM (Industrial, Científica y Médica) de uso libre. Esto elimina la necesidad de licencias, siempre que se respeten las regulaciones locales de potencia.
+- **Ventajas Estratégicas de 433MHz**:
+    - **Balance Alcance-Penetración**: Ofrece una excelente propagación de la señal y una capacidad superior para penetrar obstáculos (edificios, vegetación) en comparación con bandas de mayor frecuencia como 2.4GHz.
+    - **Tamaño de Antena Favorable**: La longitud de onda (~69 cm) permite el uso de antenas eficientes y de tamaño práctico (e.g., monopolo de 1/4 de onda de ~17 cm), ideales para un dispositivo tracker portátil.
 
-## Propagación de Señales Inalámbricas
+## Propagación y Viabilidad del Enlace
 
-### Tipos de Propagación
-- **Línea de vista**: Transmisión directa entre antenas
-	- *Alcance teórico* = 3.57 × √(h₁ + √h₂) **km** donde h₁,h₂ son alturas en metros
-- **Propagación por reflexión**: Rebotes en superficies
-- **Difracción**: Capacidad de "doblar" alrededor de obstáculos
-- **Dispersión**: Reflejos en múltiples superficies pequeñas
-
-### Factores que Afectan la Propagación
-- **Atenuación**: Pérdida de intensidad con la distancia
-- **Obstáculos**: Edificios, árboles, montañas
-- **Condiciones atmosféricas**: Lluvia, humedad
-- **Interferencias**: Otras señales en la misma banda
-
-### Cálculo de Link Budget
-- **Concepto**: Balance energético entre transmisor y receptor
-- **Fórmula básica**: Potencia Recibida = Potencia Transmitida + Ganancias - Pérdidas
-- **Elementos críticos**:
-	- Potencia de transmisión (dBm)
-	- Ganancia de antenas (dBi)
-	- Pérdidas de propagación (dB)
-	- Sensibilidad del receptor (dBm)
+### Cálculo de Presupuesto de Enlace (Link Budget)
+- **Concepto**: Para verificar que el objetivo de 5 km es alcanzable, se realiza un **Cálculo de Presupuesto de Enlace**. Este balancea todas las ganancias y pérdidas de señal desde el transmisor hasta el receptor.
+- **Fórmula Básica**: `Potencia Recibida (dBm) = Potencia de Tx (dBm) + Ganancias (dBi) - Pérdidas (dB)`
+- **Elementos Críticos para el Proyecto**:
+    - **Potencia de Transmisión (Tx Power)**: El módulo SX1276 permite transmitir hasta **+20 dBm** (100 mW).
+    - **Ganancia de Antena**: Capacidad de la antena para concentrar la energía. Se estiman de +3 a +5 dBi para las antenas del proyecto.
+    - **Pérdidas de Propagación (Path Loss)**: Atenuación natural de la señal con la distancia.
+    - **Sensibilidad del Receptor**: La mínima potencia que el receptor puede decodificar. Para LoRa, este valor es excepcionalmente bajo (**hasta -148 dBm**), siendo la característica más importante para lograr largo alcance.
+- **Conclusión**: Un margen de enlace positivo (Potencia Recibida > Sensibilidad) confirma la viabilidad teórica del sistema a la distancia objetivo.
 
 ## Fundamentos de Antenas
 
 ### Parámetros Clave
-- **Direccionalidad**: Capacidad de concentrar energía en dirección específica
-	- Omnidireccional: Igual en todas direcciones (horizontal)
-	- Direccional: Concentra energía en una dirección
-- **Ganancia**: Capacidad de amplificar la señal (medida en dBi)
-- **Polarización**: Orientación del campo eléctrico
-	- Vertical: Mejor para comunicaciones móviles
-	- Horizontal: Menor interferencia en ciertas aplicaciones
-	- Circular: Usada en satélites, menos afectada por rotación
-- **Impedancia**: Resistencia al flujo de corriente eléctrica (idealmente 50 ohm)
-	- Crítica para máxima transferencia de energía
+- **Impedancia**: Para una máxima transferencia de potencia, la impedancia de la antena debe coincidir con la del circuito del módulo LoRa, que es de **50 ohmios**. Un desajuste reduce el alcance efectivo.
+- **Ganancia y Direccionalidad**:
+    - **Omnidireccional**: Iradia la señal de manera uniforme en un plano (e.g., un dipolo). Es la elección ideal para el **tracker móvil**, ya que no necesita apuntar en una dirección específica.
+    - **Direccional**: Concentra la potencia en una dirección, logrando mayor ganancia (e.g., una antena Yagi). Es una excelente opción para la **estación base** para maximizar el alcance y la calidad de la señal desde una ubicación fija.
+- **Polarización**: Se refiere a la orientación del campo eléctrico. Para comunicaciones terrestres como esta, se utiliza la **polarización vertical**. Es crucial que tanto la antena del tracker como la de la estación base tengan la misma polarización.
 
-### Tipos de Antenas para Aplicaciones LoRa
-- **Dipolo**: Simple, omnidireccional, ~2.15 dBi
-- **Monopolo/Whip**: Común en dispositivos portátiles
-- **Helicoidal**: Compacta, buena para dispositivos pequeños
-- **Yagi**: Direccional, alta ganancia, ideal para estaciones base
-- **Patch**: Plana, direccional, útil en gateways
+## Sistema de Posicionamiento Global (GPS)
 
-## Comunicación Satelital
-- **GEO** *Geostationary Orbit*: 35,786 km, fija sobre un punto de la Tierra
-- **MEO** *Medium Earth Orbit*: 2,000-35,000 km, utilizada para navegación (GPS)
-- **LEO** *Low Earth Orbit*: 160-2,000 km, baja latencia, utilizada para IoT y comunicaciones
+### Principio de Funcionamiento
+- **Concepto**: El proyecto utiliza un módulo GPS (NEO-6M) para la geolocalización. Este sistema se basa en una constelación de satélites en órbita terrestre media (MEO) que transmiten señales de tiempo precisas.
+- **Trilateración**: El receptor GPS calcula su posición mediante los siguientes pasos:
+    1. Recibe señales de tiempo de múltiples satélites.
+    2. Mide el desfase temporal de cada señal para calcular su distancia a cada satélite.
+    3. Con la distancia a un mínimo de cuatro satélites, puede determinar su posición 3D (latitud, longitud y altitud).
+
+### Integración en el Proyecto
+- **Formato de Datos**: El módulo GPS entrega la información a través de su puerto serie en un formato estandarizado conocido como **sentencias NMEA**.
+- **Librería de Software**: En el firmware del tracker, la librería **`TinyGPSPlus`** se encarga de interpretar estas sentencias NMEA.
+- **Función Práctica**: Su rol es extraer los datos clave requeridos por el proyecto de las complejas cadenas de texto NMEA: **latitud**, **longitud**, **altitud** y **velocidad**.

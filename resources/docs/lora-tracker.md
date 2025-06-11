@@ -10,9 +10,8 @@ The main goal of this [lora-tracker](https://github.com/Yrrrrrf/lora-tracker) is
 >This protocol is known for its ability to transmit data over long distances with minimal power consumption.
 
 ## Members
-- `Fernando Bran Reza Campos`
+- `Fernando Bryan Reza Campos`
 - `Karen Navarro Hurtado`
-- `Antonio Brayan Peña Bernabe`
 
 ## Requirements
 - Reach a minimum transmission of $5$ **kilometers**
