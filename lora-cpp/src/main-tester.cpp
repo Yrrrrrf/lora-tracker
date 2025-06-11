@@ -1,15 +1,15 @@
-#include <Arduino.h>
+// #include <Arduino.h>
 
-// --- Configuration ---
-const unsigned long SERIAL_SEND_INTERVAL_MS = 2000; // Send data every 2 seconds
+// // --- Configuration ---
+// const unsigned long SERIAL_SEND_INTERVAL_MS = 2000; // Send data every 2 seconds
 
-// --- Mock Data Variables ---
-double mockLatitude = 19.2828999;  // FI Uaeméx latitude
-double mockLongitude = -99.6791984;  // FI Uaeméx longitude
-float mockAltitude = 2250.0;
-float mockSpeed = 1.5;
-float mockHdop = 1.2;
-unsigned long lastSerialSendTime = 0;
+// // --- Mock Data Variables ---
+// double mockLatitude = 19.2828999;  // FI Uaeméx latitude
+// double mockLongitude = -99.6791984;  // FI Uaeméx longitude
+// float mockAltitude = 2250.0;
+// float mockSpeed = 1.5;
+// float mockHdop = 1.2;
+// unsigned long lastSerialSendTime = 0;
 
 // void setup() {
 //     Serial.begin(9600);

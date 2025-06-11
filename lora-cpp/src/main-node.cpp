@@ -69,7 +69,6 @@ void setup() {
 }
 
 void loop() {
-    bool newGpsDataProcessed = gps.processIncomingData();
     unsigned long currentTime = millis();
 
     // Transmit data over LoRa periodically

@@ -1,17 +1,17 @@
-#include <Arduino.h>
-#include <LoRaRadio.h>
+// #include <Arduino.h>
+// #include <LoRaRadio.h>
 
-// --- Configuration ---
-// LoRa Radio
-const int LORA_CS_PIN = 10;
-const int LORA_RESET_PIN = 9;
-const int LORA_IRQ_PIN = 2;
-const long LORA_FREQUENCY = 433E6;
-const byte NODE_ADDRESS = 0xAA;      // This base station's address
-const byte TRACKER_ADDRESS = 0xBB;   // The tracker's address (not strictly needed for receiving, but good practice)
+// // --- Configuration ---
+// // LoRa Radio
+// const int LORA_CS_PIN = 10;
+// const int LORA_RESET_PIN = 9;
+// const int LORA_IRQ_PIN = 2;
+// const long LORA_FREQUENCY = 433E6;
+// const byte NODE_ADDRESS = 0xAA;      // This base station's address
+// const byte TRACKER_ADDRESS = 0xBB;   // The tracker's address (not strictly needed for receiving, but good practice)
 
-// --- Global Objects ---
-LoRaRadio lora(LORA_CS_PIN, LORA_RESET_PIN, LORA_IRQ_PIN);
+// // --- Global Objects ---
+// LoRaRadio lora(LORA_CS_PIN, LORA_RESET_PIN, LORA_IRQ_PIN);
 
 // void setup() {
 //     Serial.begin(9600); // This must match the baud rate in your Python script

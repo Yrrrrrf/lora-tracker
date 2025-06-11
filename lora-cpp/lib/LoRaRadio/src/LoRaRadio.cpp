@@ -19,8 +19,8 @@ bool LoRaRadio::begin(long frequency, byte localAddr, byte destAddr) {
     }
     
     // You can configure other LoRa parameters here if needed
-    // LoRa.setSyncWord(0xF3); // To prevent interference with other networks
-    // LoRa.setTxPower(20);    // Set transmit power, default is 17
+    LoRa.setSyncWord(0xF3); // To prevent interference with other networks
+    LoRa.setTxPower(20);    // Set transmit power, default is 17
     
     return true; // Success
 }
